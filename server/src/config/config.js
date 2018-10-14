@@ -12,5 +12,9 @@ module.exports = {
       storage: './fintracker.sqlite',
       operatorsAliases: false
     }
+  },
+  // Validates JWT token is valid
+  authentication: {
+    jwtSecret: process.env.JWT_SECRET || 'secret'
   }
 }

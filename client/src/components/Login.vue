@@ -2,12 +2,12 @@
   <v-layout row>
     <v-flex xs6 offset-sm3>
       <div class="white elevation-2">
-        <!-- Register Toolbar-->
+        <!-- Login Toolbar-->
         <v-toolbar flat dense class="green darken-2" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
+          <v-toolbar-title>Login</v-toolbar-title>
         </v-toolbar>
 
-        <!-- Register Body-->
+        <!-- Login Body-->
         <div class="pl-4 pr-4 pt-4 pb-2">
           <v-text-field type="email" name="email" v-model="email" placeholder="email"></v-text-field>
           <br>
@@ -15,7 +15,7 @@
           <br>
           <div class="error" v-html="error" ></div>
           <br>
-          <v-btn class="green darken-2" @click="register" dark>Go</v-btn>
+          <v-btn class="green darken-2" dark @click="login">Go</v-btn>
         </div>
       </div>
     </v-flex>
@@ -34,9 +34,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
@@ -50,4 +50,7 @@ export default {
 </script>
 
 <style scoped>
+.error {
+  color: red;
+}
 </style>
