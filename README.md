@@ -19,6 +19,9 @@ npm install --save axios
 npm install --save vue
 npm install --save vue-router
 npm install --save vuetify
+npm install --save vuex
+npm install --save vuex-router-sync
+
 
 #server packages
 
