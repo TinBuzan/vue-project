@@ -15,6 +15,6 @@ require('./routes')(app)
 
 // syncs sequlaize to which ever working relation database you are using, then runs server
 sequelize.sync().then(() => {
-  app.listen(process.env.PORT || 8080)
+  app.listen(config.port)
   console.log(`Server started on port ${config.port}`)
 })

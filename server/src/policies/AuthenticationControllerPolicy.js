@@ -39,7 +39,8 @@ module.exports = {
       }
     } else {
       // envoke next method in routes path
-      next(value)
+      console.log(value)
+      next()
     }
   }
 }
