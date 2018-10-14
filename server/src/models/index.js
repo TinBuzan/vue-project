@@ -11,7 +11,7 @@ const sequelize = new Sequelize(
   config.db.options
 )
 
-// Helper function to allow us to add more db models down the road 
+// Helper function to allow us to add more db models down the road
 fs
   .readdirSync(__dirname)
   .filter((file) =>
