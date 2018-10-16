@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   // port config
   port: process.env.PORT || 8081,
@@ -9,7 +11,7 @@ module.exports = {
     options: {
       dialect: process.env.DIALECT || 'sqlite',
       host: process.env.DIALECT || 'localhost',
-      storage: './fintracker.sqlite',
+      storage: path.resolve(__dirname, '../../fintracker.sqlite'),
       operatorsAliases: false
     }
   },

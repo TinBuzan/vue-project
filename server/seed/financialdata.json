@@ -1,0 +1,18 @@
+[
+  {
+    "UserId": 1,
+    "email": "tintest@gmail.com",
+    "netpaycheck": "2000",
+    "netpaymonth": "4000",
+    "netspendingmonth": "3930",
+    "monthlybudget": "0",
+    "monthlysavings": "3930",
+    "rent": "10",
+    "electricity": "10",
+    "autoloan": "10",
+    "autoinsurance": "10",
+    "studentloan": "10",
+    "gym": "10",
+    "phonepayment": "10"
+  }
+]

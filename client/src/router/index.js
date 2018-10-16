@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import FinancialData from '@/components/FinancialData'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
@@ -12,6 +13,11 @@ export default new Router({
       path: '/',
       name: 'root',
       component: HelloWorld
+    },
+    {
+      path: '/financialdata',
+      name: 'financialdata',
+      component: FinancialData
     },
     {
       path: '/login',
