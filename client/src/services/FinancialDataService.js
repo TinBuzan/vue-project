@@ -5,10 +5,10 @@ export default {
     return Api().get('financialdata', {
       params: params
     })
+  },
+  post (params) {
+    return Api().post('financialdata', {
+      params: params
+    })
   }
-  // post (params) {
-  //   return Api().post('financialdata', {
-  //     params: params
-  //   })
-  // }
 }

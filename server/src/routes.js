@@ -10,9 +10,9 @@ module.exports = (app) => {
   app.post('/login',
     AuthenticationController.login)
 
-  // get dummy sql databse
   app.get('/financialdata',
     FinancialDataController.index)
-  // app.post('/financialdata',
-  //   FinancialDataController.post)
+
+  app.post('/financialdata',
+    FinancialDataController.post)
 }

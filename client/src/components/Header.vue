@@ -1,7 +1,7 @@
 <template>
   <v-toolbar fixed class="green darken-3" dark>
     <v-toolbar-title class="mr-4">
-      <span class="home" @click="navigateTo({ name:'root' })">FinTracker</span>
+      <span class="home" @click="navigateTo({ name:'financialdata' })">FinTracker</span>
     </v-toolbar-title>
 
     <v-toolbar-items v-if="$store.state.isUserLoggedIn" @click="navigateTo({ name:'financialdata' })">

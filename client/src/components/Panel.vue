@@ -6,7 +6,7 @@
     </v-toolbar>
 
     <!-- Panel Body -->
-    <div class="pl-4 pr-4 pt-4 pb-2">
+    <div id="mainPanel" class="pl-4 pr-4 pt-4 pb-2">
       <slot>
         No slot content defined.
       </slot>

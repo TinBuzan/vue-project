@@ -6,13 +6,13 @@
           <v-text-field
             label="Net Pay/Check"
             type="number"
-            v-model="netpaycheck"
+            v-model="financialdata.netpaycheck"
             prefix="$"
           ></v-text-field>
           <v-text-field
             label="Net Pay/Month"
             type="number"
-            v-model="netpaymonth"
+            v-model="financialdata.netpaymonth"
             prefix="$"
             disabled
           ></v-text-field>
@@ -20,61 +20,61 @@
             label="Net Spending Money"
             type="number"
             prefix="$"
-            v-model="netspending"
+            v-model="financialdata.netspendingmonth"
             disabled
           ></v-text-field>
-          <v-btn class="green darken-2" flat dark @click="calcFinData">
-            Calculate
-          </v-btn>
         </v-flex>
       </panel>
     </v-flex>
 
-    <v-flex xs6>
+    <v-flex xs6 ml-2>
       <panel title='Fixed Expenses'>
         <v-flex xs8>
           <v-text-field
             label="Rent"
             type="number"
             prefix="$"
-            v-model="rent"
+            v-model="financialdata.rent"
           ></v-text-field>
           <v-text-field
             label="Electricity"
             type="number"
             prefix="$"
-            v-model="electricity"
+            v-model="financialdata.electricity"
           ></v-text-field>
           <v-text-field
             label="Auto Loan"
             type="number"
             prefix="$"
-            v-model="autoloan"
+            v-model="financialdata.autoloan"
           ></v-text-field>
           <v-text-field
             label="GEICO Insurance"
             type="number"
             prefix="$"
-            v-model="geico"
+            v-model="financialdata.autoinsurance"
           ></v-text-field>
           <v-text-field
             label="Nelnet"
             type="number"
             prefix="$"
-            v-model="nelnet"
+            v-model="financialdata.studentloan"
           ></v-text-field>
           <v-text-field
             label="Gym Membership"
             type="number"
             prefix="$"
-            v-model="gym"
+            v-model="financialdata.gym"
           ></v-text-field>
           <v-text-field
             label="Cellphone Bill"
             type="number"
             prefix="$"
-            v-model="cellphone"
+            v-model="financialdata.phonepayment"
           ></v-text-field>
+          <v-btn class="green darken-2" flat dark @click="calcFinData">
+            Calculate
+          </v-btn>
         </v-flex>
       </panel>
     </v-flex>
@@ -88,46 +88,38 @@ import Panel from '@/components/Panel'
 export default {
   data () {
     return {
-      financialdata: 'test',
-      // overview
-      netpaycheck: '0',
-      netpaymonth: '0',
-      netspending: '0',
-      // fixed expenses
-      rent: '0',
-      electricity: '0',
-      autoloan: '0',
-      geico: '0',
-      nelnet: '0',
-      gym: '0',
-      cellphone: '0'
+      financialdata: {}
     }
   },
   async mounted () {
     try {
-      const financialdata = (await FinancialDataService.index({
+      this.financialdata = (await FinancialDataService.index({
         userId: this.$store.state.user.id
       })).data
-      console.log(financialdata)
     } catch (error) {
       console.log(error)
     }
   },
   methods: {
+    // calculate expenses and monthly budget
     calcFinData () {
-      this.net_paymonth = parseFloat(this.net_paycheck * 2)
-      var fixedExpenses = parseFloat(this.rent) + parseFloat(this.electricity) + parseFloat(this.autoloan) + parseFloat(this.geico) + parseFloat(this.nelnet) + parseFloat(this.gym) + parseFloat(this.cellphone)
-      this.net_spending = this.net_paymonth - fixedExpenses
+      this.financialdata.netpaymonth = parseFloat(this.financialdata.netpaycheck * 2)
+      var fixedExpenses = parseFloat(this.financialdata.rent) + parseFloat(this.financialdata.electricity) + parseFloat(this.financialdata.autoloan) + parseFloat(this.financialdata.autoinsurance) + parseFloat(this.financialdata.studentloan) + parseFloat(this.financialdata.gym) + parseFloat(this.financialdata.phonepayment)
+      this.financialdata.netspendingmonth = this.financialdata.netpaymonth - fixedExpenses
+
+      this.setFinData()
+    },
+    // update db
+    async setFinData () {
+      try {
+        await FinancialDataService.post({
+          financialdata: this.financialdata,
+          userId: this.$store.state.user.id
+        })
+      } catch (error) {
+        console.log(error)
+      }
     }
-    // updateFinancialData() {
-    //   try {
-    //     await FinancialDataService.post({
-    //       userId: this.$store.state.user.id
-    //     })
-    //   } catch (error) {
-    //     console.log(error)
-    //   }
-    // }
   },
   components: {
     Panel
